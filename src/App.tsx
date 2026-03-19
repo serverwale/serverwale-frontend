@@ -41,6 +41,7 @@ import AILeads from "./pages/admin/AILeads";
 import Consultations from "./pages/admin/Consultations";
 import AdminJobs from "./pages/admin/AdminJobs";
 import AIAgentsDashboard from "./pages/admin/AIAgentsDashboard";
+import BlogAgentDashboard from "./pages/admin/BlogAgentDashboard";
 
 import QuickButtons from "./components/QuickButtons";
 import QuickNavSide from "./components/QuickNavSide";
@@ -82,6 +83,7 @@ const AppContent: React.FC = () => {
           <Route path="/admin/consultations" element={<Consultations />} />
           <Route path="/admin/jobs" element={<AdminJobs />} />
           <Route path="/admin/ai-agents" element={<AIAgentsDashboard />} />
+          <Route path="/admin/blog-agent" element={<BlogAgentDashboard />} />
 
           
           {/* ---------- Website Routes ---------- */}
