@@ -1,0 +1,136 @@
+import React from "react";
+import {
+  HashRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
+
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+
+import HomePage from "./pages/HomePage";
+import ServicesPage from "./pages/ServicesPage";
+import ContactPage from "./pages/ContactPage";
+import ProductPage from "./pages/ProductPage";
+import AboutPage from "./pages/AboutPage";
+import BlogPage from "./pages/BlogPage";
+import SolutionPage from "./pages/SolutionPage";
+import JoinUsPage from "./pages/JoinUsPage";
+import ProductDetail from "./pages/ProductDetail";
+import BlogDetail from "./pages/BlogDetail";
+import Policy from "./pages/Policy";
+import ShopPage from "./pages/ShopPage";
+import ShopProductDetail from "./pages/ShopProductDetail";
+import ShopAdmin from "./pages/admin/ShopAdmin";
+import CloudPage from "./pages/CloudPage";
+
+import AdminLogin from "./pages/admin/AdminLogin";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import AdminProducts from "./pages/admin/AdminProducts";
+import AdminCategories from "./pages/admin/AdminCategories";
+import AdminProductDetail from "./pages/admin/AdminProductDetail";
+import Lead from "./pages/admin/lead";
+import Request from "./pages/admin/Request";
+import Support from "./pages/admin/Support";
+import Inquiry from "./pages/admin/Inquiry";
+import AdminBlogs from "./pages/admin/AdminBlogs";
+import AddBlog from "./pages/admin/AddBlog";
+import EditBlog from "./pages/admin/EditBlog";
+import AILeads from "./pages/admin/AILeads";
+import Consultations from "./pages/admin/Consultations";
+import AdminJobs from "./pages/admin/AdminJobs";
+
+import QuickButtons from "./components/QuickButtons";
+import QuickNavSide from "./components/QuickNavSide";
+import StickyMobileCTA from "./components/StickyMobileCTA";
+
+/* =========================
+   Layout Controller
+========================= */
+
+const AppContent: React.FC = () => {
+  const location = useLocation();
+
+  // Admin pages detection
+  const isAdminRoute = location.pathname.startsWith("/admin")||location.hash.startsWith("#/admin");
+
+  return (
+    <div className="flex flex-col min-h-screen">
+
+      {/* Header */}
+      {!isAdminRoute && <Header />}
+
+      {/* Main */}
+      <main className="flex-grow">
+        <Routes>
+          {/* ---------- Admin Routes ---------- */}
+          <Route path="/admin" element={<AdminLogin />} />
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route path="/admin/products" element={<AdminProducts />} />
+          <Route path="/admin/categories" element={<AdminCategories />} />
+          <Route path="/admin/products/:id" element={<AdminProductDetail />} />
+          <Route path="/admin/leads" element={<Lead />} />
+          <Route path="/admin/request" element={<Request />} />
+          <Route path="/admin/support" element={<Support />} />
+          <Route path="/admin/inquiry" element={<Inquiry />} />
+          <Route path="/admin/blogs" element={<AdminBlogs />} />
+          <Route path="/admin/blogs/add" element={<AddBlog />} />
+          <Route path="/admin/blogs/edit/:id" element={<EditBlog />} />
+          <Route path="/admin/ai-leads" element={<AILeads />} />
+          <Route path="/admin/consultations" element={<Consultations />} />
+          <Route path="/admin/jobs" element={<AdminJobs />} />
+
+          
+          {/* ---------- Website Routes ---------- */}
+          <Route path="/" element={<HomePage />} />
+          <Route path="/services" element={<ServicesPage />} />
+          <Route path="/services/:category" element={<ServicesPage />} />
+          <Route path="/product" element={<ProductPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/enterprise-solution" element={<SolutionPage />} />
+          <Route path="/joinus" element={<JoinUsPage />} />
+          <Route path="/products/:id" element={<ProductDetail />} /> {/* 👈 */}
+          <Route path="/blog/:slug" element={<BlogDetail />} />
+          <Route path="/policy" element={<Policy />} />
+          <Route path="/shop/now" element={<ShopPage />} />
+          <Route path="/shop/now/:id" element={<ShopProductDetail />} />
+          <Route path="/shop/cloud" element={<CloudPage />} />
+          <Route path="/admin/shop" element={<ShopAdmin />} />
+
+
+          {/* ---------- Fallback ---------- */}
+          <Route path="*" element={<HomePage />} />
+        </Routes>
+      </main>
+
+      {/* Footer */}
+      {!isAdminRoute && <Footer />}
+
+      {/* Floating buttons */}
+      {!isAdminRoute && <QuickButtons />}
+
+      {/* Right-side quick nav tabs */}
+      {!isAdminRoute && <QuickNavSide />}
+
+      {/* Mobile sticky CTA bar — home page only */}
+      {!isAdminRoute && (location.pathname === "/" || location.hash === "#/") && <StickyMobileCTA />}
+    </div>
+  );
+};
+
+/* =========================
+   Router Wrapper
+========================= */
+
+const App: React.FC = () => {
+  return (
+    <Router>
+      <AppContent />
+    </Router>
+  );
+};
+
+export default App;
