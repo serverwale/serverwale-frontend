@@ -238,6 +238,7 @@ const newData: DashboardData = {
       <SidebarItem icon={<ShoppingBag size={18} />} label="Shop Products" onClick={() => navigate("/admin/shop")} />
       <SidebarItem icon={<Tag size={18} />} label="Store Leads" onClick={() => navigate("/admin/request")} />
       <SidebarItem icon={<Bot size={18} />} label="AI Leads" onClick={() => navigate("/admin/ai-leads")} />
+      <SidebarItem icon={<Bot size={18} />} label="🤖 AI Agents" onClick={() => navigate("/admin/ai-agents")} />
       <SidebarItem icon={<Building2 size={18} />} label="Enterprise Solutions" />
       <SidebarItem icon={<LayoutDashboard size={18} />} label="Job Portal" onClick={() => navigate("/admin/jobs")} />
       <SidebarItem icon={<Newspaper size={18} />} label="Blog" onClick={() => navigate("/admin/blogs")} />
