@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import axios from "axios";
+import axios from "../../utils/axiosAdmin";
 import { ArrowLeft, Search, Calendar, Bot } from "lucide-react";
 
 type Status = "new" | "contacted" | "not_contacted" | "interested" | "not_interested" | "old";

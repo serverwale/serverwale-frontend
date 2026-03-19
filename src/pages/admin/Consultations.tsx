@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import axios from "axios";
+import axios from "../../utils/axiosAdmin";
 import { ArrowLeft, Search, Phone, Mail, Calendar, Bot, MapPin } from "lucide-react";
 
 type Status =

@@ -1,10 +1,18 @@
 import React from "react";
+import axios from "axios";
 import {
   HashRouter as Router,
   Routes,
   Route,
   useLocation,
 } from "react-router-dom";
+import { getAdminToken } from "./utils/auth";
+
+// Set JWT token on all axios requests globally
+const _initToken = getAdminToken();
+if (_initToken) {
+  axios.defaults.headers.common["Authorization"] = `Bearer ${_initToken}`;
+}
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -42,6 +50,7 @@ import Consultations from "./pages/admin/Consultations";
 import AdminJobs from "./pages/admin/AdminJobs";
 import AIAgentsDashboard from "./pages/admin/AIAgentsDashboard";
 import BlogAgentDashboard from "./pages/admin/BlogAgentDashboard";
+import PrivateRoute from "./components/PrivateRoute";
 
 import QuickButtons from "./components/QuickButtons";
 import QuickNavSide from "./components/QuickNavSide";
@@ -66,24 +75,27 @@ const AppContent: React.FC = () => {
       {/* Main */}
       <main className="flex-grow">
         <Routes>
-          {/* ---------- Admin Routes ---------- */}
+          {/* ---------- Admin Routes (Public: Login Only) ---------- */}
           <Route path="/admin" element={<AdminLogin />} />
-          <Route path="/admin/dashboard" element={<AdminDashboard />} />
-          <Route path="/admin/products" element={<AdminProducts />} />
-          <Route path="/admin/categories" element={<AdminCategories />} />
-          <Route path="/admin/products/:id" element={<AdminProductDetail />} />
-          <Route path="/admin/leads" element={<Lead />} />
-          <Route path="/admin/request" element={<Request />} />
-          <Route path="/admin/support" element={<Support />} />
-          <Route path="/admin/inquiry" element={<Inquiry />} />
-          <Route path="/admin/blogs" element={<AdminBlogs />} />
-          <Route path="/admin/blogs/add" element={<AddBlog />} />
-          <Route path="/admin/blogs/edit/:id" element={<EditBlog />} />
-          <Route path="/admin/ai-leads" element={<AILeads />} />
-          <Route path="/admin/consultations" element={<Consultations />} />
-          <Route path="/admin/jobs" element={<AdminJobs />} />
-          <Route path="/admin/ai-agents" element={<AIAgentsDashboard />} />
-          <Route path="/admin/blog-agent" element={<BlogAgentDashboard />} />
+
+          {/* ---------- Admin Routes (🔒 Protected: Team Only) ---------- */}
+          <Route path="/admin/dashboard" element={<PrivateRoute><AdminDashboard /></PrivateRoute>} />
+          <Route path="/admin/products" element={<PrivateRoute><AdminProducts /></PrivateRoute>} />
+          <Route path="/admin/categories" element={<PrivateRoute><AdminCategories /></PrivateRoute>} />
+          <Route path="/admin/products/:id" element={<PrivateRoute><AdminProductDetail /></PrivateRoute>} />
+          <Route path="/admin/leads" element={<PrivateRoute><Lead /></PrivateRoute>} />
+          <Route path="/admin/request" element={<PrivateRoute><Request /></PrivateRoute>} />
+          <Route path="/admin/support" element={<PrivateRoute><Support /></PrivateRoute>} />
+          <Route path="/admin/inquiry" element={<PrivateRoute><Inquiry /></PrivateRoute>} />
+          <Route path="/admin/blogs" element={<PrivateRoute><AdminBlogs /></PrivateRoute>} />
+          <Route path="/admin/blogs/add" element={<PrivateRoute><AddBlog /></PrivateRoute>} />
+          <Route path="/admin/blogs/edit/:id" element={<PrivateRoute><EditBlog /></PrivateRoute>} />
+          <Route path="/admin/ai-leads" element={<PrivateRoute><AILeads /></PrivateRoute>} />
+          <Route path="/admin/consultations" element={<PrivateRoute><Consultations /></PrivateRoute>} />
+          <Route path="/admin/jobs" element={<PrivateRoute><AdminJobs /></PrivateRoute>} />
+          <Route path="/admin/ai-agents" element={<PrivateRoute><AIAgentsDashboard /></PrivateRoute>} />
+          <Route path="/admin/blog-agent" element={<PrivateRoute><BlogAgentDashboard /></PrivateRoute>} />
+          <Route path="/admin/shop" element={<PrivateRoute><ShopAdmin /></PrivateRoute>} />
 
           
           {/* ---------- Website Routes ---------- */}
@@ -102,7 +114,6 @@ const AppContent: React.FC = () => {
           <Route path="/shop/now" element={<ShopPage />} />
           <Route path="/shop/now/:id" element={<ShopProductDetail />} />
           <Route path="/shop/cloud" element={<CloudPage />} />
-          <Route path="/admin/shop" element={<ShopAdmin />} />
 
 
           {/* ---------- Fallback ---------- */}

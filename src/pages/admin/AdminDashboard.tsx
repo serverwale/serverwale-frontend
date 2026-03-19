@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import {
@@ -159,19 +160,32 @@ const [data, setData] = useState<DashboardData>({
 
   const navigate = useNavigate();
 
+  const handleLogout = () => {
+    localStorage.removeItem("sw_admin_token");
+    localStorage.removeItem("sw_admin_user");
+    delete axios.defaults.headers.common["Authorization"];
+    navigate("/admin", { replace: true });
+  };
+
+  // Authenticated fetch helper
+  const authFetch = (url: string) => {
+    const token = localStorage.getItem("sw_admin_token");
+    return fetch(url, { headers: token ? { Authorization: `Bearer ${token}` } : {} }).then((r) => r.json());
+  };
+
   const fetchDashboardData = async () => {
     try {
       setLoading(true);
       setError(null);
 
       const responses = await Promise.allSettled([
-        fetch("http://localhost:5000/api/blogs/counts").then((r) => r.json()),
-        fetch("http://localhost:5000/api/leads/counts").then((r) => r.json()),
-        fetch("http://localhost:5000/api/pricing-requests/counts").then((r) => r.json()),
-        fetch("http://localhost:5000/api/support-requests/counts").then((r) => r.json()),
-        fetch("http://localhost:5000/api/inquiries/counts").then((r) => r.json()),
-        fetch("http://localhost:5000/api/ai-leads/counts").then((r) => r.json()),
-        fetch("http://localhost:5000/api/consultations/counts").then((r) => r.json()),
+        authFetch("http://localhost:5000/api/blogs/counts"),
+        authFetch("http://localhost:5000/api/leads/counts"),
+        authFetch("http://localhost:5000/api/pricing-requests/counts"),
+        authFetch("http://localhost:5000/api/support-requests/counts"),
+        authFetch("http://localhost:5000/api/inquiries/counts"),
+        authFetch("http://localhost:5000/api/ai-leads/counts"),
+        authFetch("http://localhost:5000/api/consultations/counts"),
       ]);
 
       const blogsRes = responses[0].status === "fulfilled" ? responses[0].value : { count: 0 };
@@ -213,9 +227,9 @@ const newData: DashboardData = {
 
       // Fetch recent store leads
       try {
-        const leadsRes = await fetch("http://localhost:5000/api/pricing-requests?status=all");
-        const leadsData = await leadsRes.json();
+        const leadsData = await authFetch("http://localhost:5000/api/pricing-requests?status=all");
         if (Array.isArray(leadsData)) setStoreLeads(leadsData.slice(0, 8));
+        else if (Array.isArray(leadsData?.data)) setStoreLeads(leadsData.data.slice(0, 8));
       } catch { /* silent */ }
 
     } catch (err: any) {
@@ -311,7 +325,7 @@ const newData: DashboardData = {
               {profileOpen && (
                 <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="absolute right-0 mt-2 w-40 bg-slate-900 border border-slate-800 rounded-xl shadow-xl overflow-hidden">
                   <button className="w-full text-left px-4 py-2 hover:bg-slate-800 text-white">Profile</button>
-                  <button className="w-full text-left px-4 py-2 hover:bg-slate-800 flex items-center gap-2 text-red-400">
+                  <button onClick={handleLogout} className="w-full text-left px-4 py-2 hover:bg-slate-800 flex items-center gap-2 text-red-400">
                     <LogOut size={16} /> Logout
                   </button>
                 </motion.div>
