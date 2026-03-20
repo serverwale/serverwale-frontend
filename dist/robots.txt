@@ -1,32 +1,6 @@
-# Serverwale™ — robots.txt
-# https://serverwale.com
-
 User-agent: *
 Allow: /
-
-# Block admin & private routes from indexing
 Disallow: /admin/
 Disallow: /admin
-Disallow: /secure-admin/
-Disallow: /dashboard/
-Disallow: /login/
 
-# Block API endpoints
-Disallow: /api/
-Disallow: /backend/
-
-# Block search result pages with query params
-Disallow: /*?*sort=
-Disallow: /*?*filter=
-Disallow: /*?*page=
-
-# Allow Google Images
-User-agent: Googlebot-Image
-Allow: /
-
-# Allow Bing
-User-agent: Bingbot
-Allow: /
-
-# XML Sitemap location
 Sitemap: https://serverwale.com/sitemap.xml

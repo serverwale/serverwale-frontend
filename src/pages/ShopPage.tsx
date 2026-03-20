@@ -9,7 +9,7 @@ import {
 } from "lucide-react";
 import useSEO from "../hooks/useSEO";
 
-const API = "http://localhost:5000";
+const API = "";
 const ITEMS_PER_PAGE = 12;
 const SHOP_STATE_KEY = "shop_scroll_state";
 

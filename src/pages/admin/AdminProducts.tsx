@@ -16,7 +16,7 @@ type Product = {
   created_at: string;
 };
 
-const API_BASE = "http://localhost:5000";
+const API_BASE = "";
 
 const AdminProducts: React.FC = () => {
   const navigate = useNavigate();

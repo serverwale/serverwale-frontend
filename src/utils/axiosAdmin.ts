@@ -6,7 +6,7 @@ import axios from "axios";
 import { getAdminToken, removeAdminToken } from "./auth";
 
 const axiosAdmin = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "",
 });
 
 // Attach token to every request
@@ -24,7 +24,7 @@ axiosAdmin.interceptors.response.use(
   (err) => {
     if (err.response?.status === 401) {
       removeAdminToken();
-      window.location.hash = "#/admin";
+      window.location.href = "/admin";
     }
     return Promise.reject(err);
   }

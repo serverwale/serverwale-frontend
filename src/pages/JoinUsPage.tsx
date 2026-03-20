@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 
-const API = "http://localhost:5000";
+const API = "";
 const WA_NUMBER = "919999656064";
 
 type TabType = "all" | "jobs" | "internships" | "remote";

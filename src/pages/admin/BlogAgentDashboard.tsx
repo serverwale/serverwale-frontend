@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import AdminHeader from "../../components/Admin/AdminHeader";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const API: string = (import.meta as any).env?.VITE_API_URL || "http://localhost:5000";
+const API: string = (import.meta as any).env?.VITE_API_URL || "";
 
 /* ─── Types ──────────────────────────────────────────────── */
 interface Topic { title: string; slug: string; primaryKeyword: string; secondaryKeywords: string[]; searchIntent: string; estimatedDifficulty: string; estimatedVolume: string; whyPick: string; }

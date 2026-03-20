@@ -30,7 +30,7 @@ const SupportFormModal: React.FC<SupportFormModalProps> = ({ isOpen, onClose }) 
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/support-requests",
+        "/api/support-requests",
         formData
       );
 

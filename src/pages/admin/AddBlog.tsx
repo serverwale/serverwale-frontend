@@ -35,7 +35,7 @@ const AddBlog = () => {
 
     try {
       setLoading(true);
-      await axios.post("http://localhost:5000/api/blogs", formData);
+      await axios.post("/api/blogs", formData);
       alert("Blog added successfully ✅");
       navigate("/admin/blogs");
     } catch (err) {
@@ -104,7 +104,7 @@ const AddBlog = () => {
       formData.append("image", file);
 
       const response = await axios.post(
-        "http://localhost:5000/api/blogs/upload-inline-image",
+        "/api/blogs/upload-inline-image",
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },

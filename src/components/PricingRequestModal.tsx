@@ -31,7 +31,7 @@ const PricingRequestModal: React.FC<PricingRequestModalProps> = ({ isOpen, onClo
     setError(null);
 
     try {
-      const response = await axios.post("http://localhost:5000/api/pricing", formData);
+      const response = await axios.post("/api/pricing", formData);
 
       if (response.data.success) {
         setSubmitted(true);

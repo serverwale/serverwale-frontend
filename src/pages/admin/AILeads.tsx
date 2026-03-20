@@ -31,7 +31,7 @@ const statusLabels: Record<string, { label: string; color: string; bg: string }>
   not_interested: { label: "Not Interested", color: "text-red-700", bg: "bg-red-100 border-red-300" }
 };
 
-const API = "http://localhost:5000/api/ai-leads";
+const API = "/api/ai-leads";
 
 const AILeads: React.FC = () => {
   const navigate = useNavigate();

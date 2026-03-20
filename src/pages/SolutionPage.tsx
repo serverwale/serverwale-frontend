@@ -35,7 +35,7 @@ const SolutionPage: React.FC = () => {
   const submitConsultation = async () => {
     setSubmitting(true);
     try {
-      await fetch("http://localhost:5000/api/consultations", {
+      await fetch("/api/consultations", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),

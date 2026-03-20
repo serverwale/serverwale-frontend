@@ -7,7 +7,7 @@ import {
 } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 
-const API_URL = "http://localhost:5000/api/leads";
+const API_URL = "/api/leads";
 
 /* -- Benefit items with distinct icons -- */
 const BENEFITS = [

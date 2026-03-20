@@ -67,7 +67,7 @@ const FAQS = [
 
 const POSTS_PER_PAGE = 8;
 const SLIDER_COUNT   = 4;   // latest N blogs in the auto-slider
-const API_BASE       = "http://localhost:5000";
+const API_BASE       = "";
 const SLIDE_INTERVAL = 3500; // ms
 
 /* ── Smart blog image resolver ── */

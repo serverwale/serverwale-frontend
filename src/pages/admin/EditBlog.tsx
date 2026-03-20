@@ -26,7 +26,7 @@ const EditBlog = () => {
   ========================= */
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/blogs/${id}`)
+      .get(`/api/blogs/${id}`)
       .then((res) => {
         const b = res.data;
         setTitle(b.title);
@@ -65,7 +65,7 @@ const EditBlog = () => {
     try {
       setSaving(true);
       await axios.put(
-        `http://localhost:5000/api/blogs/${id}`,
+        `/api/blogs/${id}`,
         formData,
         { headers: { "Content-Type": "multipart/form-data" } }
       );
@@ -134,7 +134,7 @@ const EditBlog = () => {
       formData.append("image", file);
 
       const response = await axios.post(
-        "http://localhost:5000/api/blogs/upload-inline-image",
+        "/api/blogs/upload-inline-image",
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },
@@ -345,7 +345,7 @@ const EditBlog = () => {
               <div className="mb-4">
                 <p className="text-xs text-slate-500 mb-2">Current Image:</p>
                 <img
-                  src={`http://localhost:5000${oldImage}`}
+                  src={`${oldImage}`}
                   alt="Current featured"
                   className="w-48 h-32 object-cover rounded-lg border border-slate-200"
                 />

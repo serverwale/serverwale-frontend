@@ -25,7 +25,7 @@ const Toast = ({ t, onClose }: { t: Toast; onClose: () => void }) => (
   </div>
 );
 
-const API_BASE = "http://localhost:5000";
+const API_BASE = "";
 
 const AdminProductDetail: React.FC = () => {
   const { id } = useParams();

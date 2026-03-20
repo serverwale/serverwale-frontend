@@ -32,8 +32,8 @@ const AdminBlogs = () => {
     try {
       const url =
         filter === "all"
-          ? "http://localhost:5000/api/blogs"
-          : `http://localhost:5000/api/blogs?status=${filter}`;
+          ? "/api/blogs"
+          : `/api/blogs?status=${filter}`;
 
       const res = await axios.get<Blog[]>(url);
       setBlogs(res.data);
@@ -53,7 +53,7 @@ const AdminBlogs = () => {
   ========================= */
   const updateStatus = async (id: number, status: "draft" | "published") => {
     try {
-      await axios.put(`http://localhost:5000/api/blogs/${id}/status`, {
+      await axios.put(`/api/blogs/${id}/status`, {
         status,
       });
       fetchBlogs();
@@ -70,7 +70,7 @@ const AdminBlogs = () => {
     if (!ok) return;
 
     try {
-      await axios.delete(`http://localhost:5000/api/blogs/${id}`);
+      await axios.delete(`/api/blogs/${id}`);
       fetchBlogs();
     } catch (err) {
       console.error("Delete failed ❌", err);

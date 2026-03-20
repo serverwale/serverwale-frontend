@@ -6,7 +6,7 @@ import {
 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 
-const API = "http://localhost:5000";
+const API = "";
 
 const STOCK_OPTIONS = [
   { value: "in_stock",     label: "In Stock" },

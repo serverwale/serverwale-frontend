@@ -20,7 +20,7 @@ const BlogDetail = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/blogs/public/${slug}`)
+      .get(`/api/blogs/public/${slug}`)
       .then((res) => setBlog(res.data))
       .catch(() => setBlog(null))
       .finally(() => setLoading(false));
@@ -109,7 +109,7 @@ const BlogDetail = () => {
           {blog.image && (
             <div className="rounded-2xl overflow-hidden mb-8 sm:mb-10 shadow-lg aspect-[16/7]">
               <img
-                src={blog.image.startsWith("http") ? blog.image : `http://localhost:5000${blog.image}`}
+                src={blog.image.startsWith("http") ? blog.image : `${blog.image}`}
                 alt={blog.title}
                 className="w-full h-full object-cover"
                 onError={e => { (e.target as HTMLImageElement).style.display = "none"; }}

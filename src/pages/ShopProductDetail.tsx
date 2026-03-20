@@ -7,7 +7,7 @@ import {
 } from "lucide-react";
 import useSEO from "../hooks/useSEO";
 
-const API = "http://localhost:5000";
+const API = "";
 const FALLBACK_IMG = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect fill='%23e2e8f0' width='400' height='300'/%3E%3Crect fill='%23cbd5e1' x='160' y='90' width='80' height='60' rx='6'/%3E%3Crect fill='%23cbd5e1' x='145' y='155' width='110' height='8' rx='4'/%3E%3Crect fill='%23cbd5e1' x='165' y='170' width='70' height='8' rx='4'/%3E%3C/svg%3E`;
 
 /* ─── HELPERS ───────────────────────────── */

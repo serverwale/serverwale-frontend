@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import {
-  HashRouter as Router,
+  BrowserRouter as Router,
   Routes,
   Route,
   useLocation,
@@ -64,7 +64,7 @@ const AppContent: React.FC = () => {
   const location = useLocation();
 
   // Admin pages detection
-  const isAdminRoute = location.pathname.startsWith("/admin")||location.hash.startsWith("#/admin");
+  const isAdminRoute = location.pathname.startsWith("/admin");
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -131,7 +131,7 @@ const AppContent: React.FC = () => {
       {!isAdminRoute && <QuickNavSide />}
 
       {/* Mobile sticky CTA bar — home page only */}
-      {!isAdminRoute && (location.pathname === "/" || location.hash === "#/") && <StickyMobileCTA />}
+      {!isAdminRoute && location.pathname === "/" && <StickyMobileCTA />}
     </div>
   );
 };

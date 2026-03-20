@@ -9,7 +9,7 @@ import {
   CheckCircle, XCircle, AlertCircle, RefreshCw
 } from "lucide-react";
 
-const API = "http://localhost:5000";
+const API = "";
 
 interface Job {
   id: number;

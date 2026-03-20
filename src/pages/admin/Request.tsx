@@ -46,7 +46,7 @@ const FILTER_TABS: Array<{ key: "all" | Status; label: string; icon: React.React
   { key: "not_interested",label: "Not Interested",icon: <ThumbsDown size={13} /> },
 ];
 
-const API = "http://localhost:5000/api/pricing-requests";
+const API = "/api/pricing-requests";
 
 /* ─── Main Component ─────────────────────── */
 const StoreLeads: React.FC = () => {

@@ -9,7 +9,7 @@ import {
 } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 
-const API_URL    = "http://localhost:5000";
+const API_URL    = "";
 const WA_NUMBER  = "919999656064";
 
 /* ─── Section anchors for in-page nav ─── */

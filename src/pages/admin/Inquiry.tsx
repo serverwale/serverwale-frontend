@@ -25,7 +25,7 @@ const statusLabels: Record<Status, { label: string; color: string; bg: string }>
   old: { label: "Old", color: "text-slate-600", bg: "bg-slate-100 border-slate-300" },
 };
 
-const API = "http://localhost:5000/api/inquiries";
+const API = "/api/inquiries";
 
 const Inquiries: React.FC = () => {
   const navigate = useNavigate();

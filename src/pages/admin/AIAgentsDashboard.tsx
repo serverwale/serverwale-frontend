@@ -3,7 +3,7 @@ import { io, Socket } from "socket.io-client";
 import AdminHeader from "../../components/Admin/AdminHeader";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const API: string = (import.meta as any).env?.VITE_API_URL || "http://localhost:5000";
+const API: string = (import.meta as any).env?.VITE_API_URL || "";
 
 /* ─── Types ─────────────────────────────────────────────── */
 interface Visitor {

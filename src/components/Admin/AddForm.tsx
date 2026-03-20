@@ -22,7 +22,7 @@ const BADGE_OPTIONS = [
   { value: "On Request",    label: "🟡 On Request"  },
 ];
 
-const API = "http://localhost:5000";
+const API = "";
 
 /* ── single image picker ── */
 const ImageSlot = ({

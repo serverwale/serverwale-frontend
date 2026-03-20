@@ -70,7 +70,7 @@ const AiChat: React.FC<AiChatProps> = ({ isAutoOpen }) => {
         source:  "Kiara AI",
       };
       if (!payload.name || !payload.phone || !payload.email) return;
-      await fetch("http://localhost:5000/api/ai-leads", {
+      await fetch("/api/ai-leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -157,7 +157,7 @@ const AiChat: React.FC<AiChatProps> = ({ isAutoOpen }) => {
   const sendMessageToBackend = async (userText: string) => {
     setIsTyping(true);
     try {
-      const res  = await fetch("http://localhost:5000/api/chat", {
+      const res  = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: userText, sessionId, lead: leadRef.current }),

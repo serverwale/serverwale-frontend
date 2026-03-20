@@ -179,13 +179,13 @@ const [data, setData] = useState<DashboardData>({
       setError(null);
 
       const responses = await Promise.allSettled([
-        authFetch("http://localhost:5000/api/blogs/counts"),
-        authFetch("http://localhost:5000/api/leads/counts"),
-        authFetch("http://localhost:5000/api/pricing-requests/counts"),
-        authFetch("http://localhost:5000/api/support-requests/counts"),
-        authFetch("http://localhost:5000/api/inquiries/counts"),
-        authFetch("http://localhost:5000/api/ai-leads/counts"),
-        authFetch("http://localhost:5000/api/consultations/counts"),
+        authFetch("/api/blogs/counts"),
+        authFetch("/api/leads/counts"),
+        authFetch("/api/pricing-requests/counts"),
+        authFetch("/api/support-requests/counts"),
+        authFetch("/api/inquiries/counts"),
+        authFetch("/api/ai-leads/counts"),
+        authFetch("/api/consultations/counts"),
       ]);
 
       const blogsRes = responses[0].status === "fulfilled" ? responses[0].value : { count: 0 };
@@ -227,7 +227,7 @@ const newData: DashboardData = {
 
       // Fetch recent store leads
       try {
-        const leadsData = await authFetch("http://localhost:5000/api/pricing-requests?status=all");
+        const leadsData = await authFetch("/api/pricing-requests?status=all");
         if (Array.isArray(leadsData)) setStoreLeads(leadsData.slice(0, 8));
         else if (Array.isArray(leadsData?.data)) setStoreLeads(leadsData.data.slice(0, 8));
       } catch { /* silent */ }
